@@ -1,21 +1,30 @@
+const responseMessage = require("../constant/responseMessage");
 const formModel = require("../models/form");
 
 exports.getForms = async (request, response) => {
-    let forms = await formModel.find({});
-
     try {
-        response.send(forms);
+        let forms = await formModel.find({});
+        response
+        .json({
+            ...responseMessage.SUCCESS,
+            ...{data: forms}
+        })
     } catch (error) {
-        response.status(500).send(error);
+        response
+        .json({ ...responseMessage.INTERNAL_SERVER });
     }
 };
 
 exports.addForm = async (request, response) => {
-    console.log(request.body)
-
     try {
-        response.send(forms);
+        let newForm = await formModel.create(request.body);
+        response
+        .json({
+            ...responseMessage.SUCCESS,
+            ...{data: newForm}
+        })
     } catch (error) {
-        response.status(500).send(error);
+        response
+        .json({ ...responseMessage.INTERNAL_SERVER });
     }
 };

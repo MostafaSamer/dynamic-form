@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const path = require('path');
+const bodyParser = require('body-parser')
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -24,6 +25,16 @@ mongoose.connection.on("error", function (err) {
 mongoose.connection.once("open", function () {
   console.log("Successfully connected to database");
 });
+
+// Body Parser
+app.use(
+  bodyParser.urlencoded({
+    parameterLimit: 10000000,
+    limit: "5mb",
+    extended: true,
+  })
+);
+app.use(bodyParser.json({ limit: "5mb" }));
 
 // Static files
 app.use(express.static(CLIENT_BUILD_PATH));
