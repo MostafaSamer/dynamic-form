@@ -15,6 +15,22 @@ exports.getForms = async (request, response) => {
     }
 };
 
+exports.getForm = async (request, response) => {
+    try {
+        let formId = request.params.id;
+        console.log(formId);
+        let form = await formModel.findOne({ _id: formId });
+        response
+        .json({
+            ...responseMessage.SUCCESS,
+            ...{data: form}
+        })
+    } catch (error) {
+        response
+        .json({ ...responseMessage.INTERNAL_SERVER });
+    }
+};
+
 exports.addForm = async (request, response) => {
     try {
         let newForm = await formModel.create(request.body);
