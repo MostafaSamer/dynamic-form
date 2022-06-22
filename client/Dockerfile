@@ -1,4 +1,4 @@
-FROM node:12.10.0
+FROM node:12.10.0 as react-build
 
 WORKDIR /usr/app
 
@@ -8,6 +8,18 @@ RUN npm ci -qy
 
 COPY . .
 
-EXPOSE 3000
+CMD ["npm", "build"]
 
-CMD ["npm", "start"]
+FROM nginx:alpine
+
+WORKDIR /usr/share/nginx/html
+
+RUN rm -rf ./*
+
+COPY --from=react-build /usr/app/build .
+
+COPY default /etc/nginx/sites-available/default
+
+EXPOSE 80
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
