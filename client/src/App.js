@@ -5,8 +5,8 @@ import {
   Link
 } from 'react-router-dom';
 
-import Home from './pages/home';
-import CreateForm from './pages/forms/create';
+import Home from './app/pages/home';
+import CreateForm from './app/pages/forms/create';
 
 function App() {
   return (
