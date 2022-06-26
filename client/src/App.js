@@ -1,19 +1,20 @@
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
 import Home from './app/pages/home';
 import CreateForm from './app/pages/forms/create';
+import AnswerForm from './app/pages/forms/answer';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path='/' element={< Home />}></Route>
-        <Route exact path='/form/create' element={< CreateForm />}></Route>
+    <Router basename={`/`}>
+        <Routes>
+          <Route exact path='/' component={< Home />} />
+          <Route exact path='/forms/create' component={< CreateForm />} />
+          <Route exact path='/forms/:id' component={< AnswerForm />} />
       </Routes>
     </Router>
   );

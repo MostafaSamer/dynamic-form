@@ -8,6 +8,8 @@ RUN npm ci -qy
 
 COPY . .
 
+RUN npm run build
+
 CMD ["npm", "build"]
 
 FROM nginx:alpine
