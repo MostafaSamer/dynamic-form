@@ -12,9 +12,9 @@ function App() {
   return (
     <Router basename={`/`}>
         <Routes>
-          <Route exact path='/' component={< Home />} />
-          <Route exact path='/forms/create' component={< CreateForm />} />
-          <Route exact path='/forms/:id' component={< AnswerForm />} />
+          <Route exact path='/' element={< Home />} />
+          <Route exact path='/forms/create' element={< CreateForm />} />
+          <Route exact path='/forms/:id' element={< AnswerForm />} />
       </Routes>
     </Router>
   );

@@ -14,7 +14,7 @@ export default function apiCall(method, path, data = {}, _baseURL) {
   axios.interceptors.response.use(res => {
     // console.log(res);
     // Important: response interceptors **must** return the response.
-    return res;
+    return res.data? res.data : res;
   });
 
 

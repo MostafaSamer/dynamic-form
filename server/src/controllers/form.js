@@ -18,8 +18,9 @@ exports.getForms = async (request, response) => {
 exports.getForm = async (request, response) => {
     try {
         let formId = request.params.id;
-        console.log(formId);
-        let form = await formModel.findOne({ _id: formId });
+        let form = await formModel
+        .findOne({ _id: formId })
+        .populate('format');
         response
         .json({
             ...responseMessage.SUCCESS,

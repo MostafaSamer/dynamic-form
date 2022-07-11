@@ -3,7 +3,8 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const path = require('path');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // Constants
 const PORT = process.env.PORT || 8080;
@@ -13,6 +14,9 @@ const CLIENT_BUILD_PATH = path.join(__dirname, '../../client/build');
 
 // App
 const app = express();
+
+// Allow Cros
+app.use(cors());
 
 // Mongo
 mongoose.Promise = global.Promise;
@@ -40,6 +44,9 @@ app.use(bodyParser.json({ limit: "5mb" }));
 app.use(express.static(CLIENT_BUILD_PATH));
 
 require("./routes/form")(app);
+require("./routes/formFormat")(app);
+require("./routes/properties")(app);
+require("./routes/answer")(app);
 
 app.listen(PORT, HOST, () => {
   console.log(`Running on http://${HOST}:${PORT}`);
