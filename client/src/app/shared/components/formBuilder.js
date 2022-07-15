@@ -2,8 +2,6 @@ import { useState } from "react";
 
 function FormBuilder({ formData, SubmitAnswer }) {
 
-    console.log(formData)
-
     const handleSubmit = (event) => {
         event.preventDefault();
         let answer = structeAnswer(event.target);
