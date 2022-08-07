@@ -12,7 +12,12 @@ const FormSchema = new mongoose.Schema({
     required: true,
   },
   format: [
-    {type: ObjectId, ref: 'FormFormat'}
+    {
+      questionTitle: {type: String},
+      formFormat: {type: ObjectId, ref: 'FormFormat'},
+      options: [{type: string}],
+      required: Boolean
+    }
   ]
 });
 

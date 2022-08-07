@@ -3,7 +3,6 @@ const answerModel = require("../models/answer");
 
 exports.addAnswer = async (request, response) => {
     try {
-        console.log(request.body)
         let newAnswer = await answerModel.create(request.body);
         response
         .json({
